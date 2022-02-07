@@ -70,7 +70,7 @@ export default function Form() {
     <>
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="fields">
           <label>FirstName:</label>
           <input
             type="text"
@@ -80,7 +80,7 @@ export default function Form() {
           />
           {error.firstName && <span style={spanStyle}>{error.firstName}</span>}
         </div>
-        <div>
+        <div className="fields">
           <label>LastName:</label>
           <input
             type="text"
@@ -90,7 +90,7 @@ export default function Form() {
           />
           {error.lastName && <span style={spanStyle}>{error.lastName}</span>}
         </div>
-        <div>
+        <div className="fields">
           <label>Mobile Number:</label>
           <input
             type="text"
@@ -100,7 +100,7 @@ export default function Form() {
           />
           {error.mobileNum && <span style={spanStyle}>{error.mobileNum}</span>}
         </div>
-        <div>
+        <div className="fields">
           <label>Country Code:</label>
           <select name="countryCode" onChange={handleChange}>
             {countriesCode.map((item, index) => {
