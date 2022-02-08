@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./tempTracker.css";
 
 let tempArray = [];
 
@@ -55,8 +56,10 @@ export default function TempTracker() {
     }
   };
   return (
-    <>
-      <h1>Temperature Tracker for max, min, mean and mode values: </h1>
+    <div className="inside-container">
+      <h1 className="heading">
+        Temperature Tracker for max, min, mean and mode values:{" "}
+      </h1>
 
       <div className="temp-tracker">
         <div>
@@ -68,18 +71,20 @@ export default function TempTracker() {
               setTemparature(e.target.value);
             }}
           />
-          {error && <p> Temparature range between 0 to 150</p>}
           <button onClick={handleSubmit}>SUBMIT</button>
+          {error && (
+            <p className="error"> Temparature range between 0 to 150</p>
+          )}
         </div>
         {tempArray.length > 0 && (
-          <div className="tempResult">
-            <h3>Max Temparature : {maxParsedInt ? maxParsedInt : 0}</h3>
-            <h3>Min Temparature : {minParsedInt ? minParsedInt : 0}</h3>
-            <h3>Mean of all range Temparatures : {meanData ? meanData : 0}</h3>
-            <h3>Mode of all the temparatures :{modeValue ? modeValue : 0}</h3>
+          <div className="temp-result">
+            <p>Max Temparature : {maxParsedInt ? maxParsedInt : 0}</p>
+            <p>Min Temparature : {minParsedInt ? minParsedInt : 0}</p>
+            <p>Mean of all range Temparatures : {meanData ? meanData : 0}</p>
+            <p>Mode of all the temparatures :{modeValue ? modeValue : 0}</p>
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

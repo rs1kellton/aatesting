@@ -1,0 +1,13 @@
+.fields {
+  padding: 5px;
+}
+
+.addup-value {
+  margin-left: 10px;
+  width: 200px;
+}
+
+.error {
+  color: red;
+  margin-left: 10px;
+}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import countriesCode from "../data/countriesCode";
+import "./form.css";
+
 export default function Form() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -7,8 +9,6 @@ export default function Form() {
   const [countryCode, setCountryCode] = useState("004");
   const [submitValue, setSubmitValue] = useState({});
   const [error, setError] = useState({});
-
-  let spanStyle = { color: "red" };
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -29,7 +29,6 @@ export default function Form() {
   };
 
   const handleSubmit = (e) => {
-    console.log(error);
     e.preventDefault();
     let errorObj = {};
     if (firstName.length <= 5) {
@@ -58,51 +57,57 @@ export default function Form() {
       };
     }
     if (Object.keys(errorObj).length === 0) {
+      setError({});
       setSubmitValue({ firstName, lastName, mobileNum, countryCode });
     } else {
       setError(errorObj);
     }
-
-    console.log(errorObj);
   };
-  console.log("submitValue: ", submitValue, "error: ", error);
+
   return (
-    <>
-      <h1>Registration Form</h1>
+    <div className="inside-container">
+      <h1 className="heading">Registration Form</h1>
       <form onSubmit={handleSubmit}>
         <div className="fields">
           <label>FirstName:</label>
           <input
+            className="addup-value"
             type="text"
             name="firstName"
             value={firstName}
             onChange={handleChange}
           />
-          {error.firstName && <span style={spanStyle}>{error.firstName}</span>}
+          {error.firstName && <span className="error">{error.firstName}</span>}
         </div>
         <div className="fields">
           <label>LastName:</label>
           <input
+            className="addup-value"
             type="text"
             name="lastName"
             value={lastName}
             onChange={handleChange}
           />
-          {error.lastName && <span style={spanStyle}>{error.lastName}</span>}
+          {error.lastName && <span className="error">{error.lastName}</span>}
         </div>
         <div className="fields">
           <label>Mobile Number:</label>
           <input
+            className="addup-value"
             type="text"
             name="mobileNum"
             value={mobileNum}
             onChange={handleChange}
           />
-          {error.mobileNum && <span style={spanStyle}>{error.mobileNum}</span>}
+          {error.mobileNum && <span className="error">{error.mobileNum}</span>}
         </div>
         <div className="fields">
           <label>Country Code:</label>
-          <select name="countryCode" onChange={handleChange}>
+          <select
+            className="addup-value"
+            name="countryCode"
+            onChange={handleChange}
+          >
             {countriesCode.map((item, index) => {
               return (
                 <option key={index} value={item.number}>
@@ -112,14 +117,17 @@ export default function Form() {
             })}
           </select>
           {error.countryCode && (
-            <span style={spanStyle}>{error.countryCode}</span>
+            <span className="error">{error.countryCode}</span>
           )}
         </div>
         <input type="submit" />
       </form>
-      <h3>
-        {Object.keys(submitValue).length > 1 && JSON.stringify(submitValue)}
-      </h3>
-    </>
+      {Object.keys(submitValue).length > 1 && (
+        <div>
+          <h4>The submitted object is: </h4>
+          <p>{JSON.stringify(submitValue)}</p>
+        </div>
+      )}
+    </div>
   );
 }

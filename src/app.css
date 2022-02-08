@@ -1,0 +1,14 @@
+.container {
+  margin: 10px;
+  padding: 10px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.inside-container {
+  border: 1px solid grey;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}

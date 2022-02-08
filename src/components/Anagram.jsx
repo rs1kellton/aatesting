@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./anagram.css";
+
 export default function Anagram() {
   const [firstWord, setFirstWord] = useState("");
   const [secondWord, setSecondWord] = useState("");
@@ -8,7 +10,6 @@ export default function Anagram() {
   const [errorSecondWord, setErrorSecondWord] = useState(false);
 
   let object = {};
-  let errorStyle = { color: "red" };
 
   const handleSubmit = () => {
     let str1 = firstWord.toLowerCase().split("").sort().join("");
@@ -33,8 +34,8 @@ export default function Anagram() {
     }
   };
   return (
-    <>
-      <h1>Check if two words are Anagram</h1>
+    <div className="inside-container">
+      <h1 className="heading">Check if two words are Anagram</h1>
       <div className="anagram">
         <div className="fields">
           <label>First word: </label>
@@ -45,9 +46,7 @@ export default function Anagram() {
             onChange={(e) => setFirstWord(e.target.value)}
           />
           {errorFirstWord && (
-            <span style={errorStyle} className="errorText">
-              Please Enter the first word
-            </span>
+            <span className="error">Please Enter the first word</span>
           )}
         </div>
         <div className="fields">
@@ -59,24 +58,27 @@ export default function Anagram() {
             onChange={(e) => setSecondWord(e.target.value)}
           />
           {errorSecondWord && (
-            <span style={errorStyle} className="errorText">
-              Please enter the second word
-            </span>
+            <span className="error">Please enter the second word</span>
           )}
         </div>
         <div>
           <button onClick={handleSubmit}>Click for Result</button>
         </div>
         {resultButton && (
-          <div className="resultStatus">
-            <h2 className="resultText">
+          <div className="result-status">
+            <span>The added words </span>
+            <span className="resultText">
               {resultButton.firstWord ? resultButton.firstWord : ""},{" "}
               {resultButton.secondWord ? resultButton.secondWord : ""}
-            </h2>
-            <h2> Returns {result === true ? "True" : "False"}</h2>
+              {" =>"}
+            </span>
+            <span className="return-result">
+              {" "}
+              Returns {result === true ? "True" : "False"}
+            </span>
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
